@@ -13,6 +13,7 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
                 ubuntu: ['Ubuntu', ...defaultTheme.fontFamily.sans],
                 roboto: ['Roboto', ...defaultTheme.fontFamily.sans],
+                lato: ['Lato', ...defaultTheme.fontFamily.sans],
             },
         },
     },

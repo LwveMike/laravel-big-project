@@ -3,8 +3,20 @@
     <div class="flex flex-row justify-center items-center h-full">
      <x-logo />
       <ul class="flex flex-row h-full justify-center mx-4">
-        <a href="/women" class="font-roboto font-bold text-zinc-50 tracking-wider border-x border-zinc-600 flex justify-center items-center p-8 text-xl cursor-pointer hover:bg-zinc-600">women</a>
-        <a href="/men" class="font-roboto font-bold text-zinc-50 tracking-wider border-x border-zinc-600 flex justify-center items-center p-8 text-xl cursor-pointer hover:bg-zinc-600">men</a>
+
+      @if (Request::segment(1) === 'women')
+      <a href="/women" class="bg-zinc-600 font-roboto font-bold text-zinc-50 tracking-wider border-x border-zinc-600 flex justify-center items-center p-8 text-xl cursor-pointer hover:bg-zinc-600">women</a>
+      <a href="/men" class="font-roboto font-bold text-zinc-50 tracking-wider border-x border-zinc-600 flex justify-center items-center p-8 text-xl cursor-pointer hover:bg-zinc-600">men</a>
+      
+      @elseif (Request::segment(1) === 'men')
+      <a href="/women" class="font-roboto font-bold text-zinc-50 tracking-wider border-x border-zinc-600 flex justify-center items-center p-8 text-xl cursor-pointer hover:bg-zinc-600">women</a>
+      <a href="/men" class="bg-zinc-600 font-roboto font-bold text-zinc-50 tracking-wider border-x border-zinc-600 flex justify-center items-center p-8 text-xl cursor-pointer hover:bg-zinc-600">men</a>
+
+      @else
+      <a href="/men" class="font-roboto font-bold text-zinc-50 tracking-wider border-x border-zinc-600 flex justify-center items-center p-8 text-xl cursor-pointer hover:bg-zinc-600">men</a>
+      <a href="/women" class="font-roboto font-bold text-zinc-50 tracking-wider border-x border-zinc-600 flex justify-center items-center p-8 text-xl cursor-pointer hover:bg-zinc-600">women</a>
+
+      @endif
       </ul>
     </div>
   
@@ -36,12 +48,12 @@
       <div x-show="open"
             x-transition:enter.duration.300ms
             x-transition:leave.duration.500ms
-            class="absolute right-0 top-2/3 w-48 py-2 mt-2 bg-zinc-800 shadow-xl">
+            class="absolute right-0 top-2/3 w-48 py-2 mt-2 bg-zinc-800 shadow-xl z-20">
             @if (Auth::user())
 
-            <a href="/profile"
+            <a href="/create-product"
                 class="block px-4 py-2 text-sm text-zinc-200 hover:bg-zinc-600 hover:text-zinc-50">
-                Profile
+                Add
             </a>
 
             <form method="POST" action="{{ route('logout') }}">
@@ -72,9 +84,11 @@
       </li>
 
       <li class="p-4 text-zinc-200 cursor-pointer">
+        <a href="/users-products">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
       </svg>
+      </a>
       </li>
     </ul>
   
@@ -83,4 +97,6 @@
   </div>
 
 </div>
+
+<x-mini-navigation />
 
